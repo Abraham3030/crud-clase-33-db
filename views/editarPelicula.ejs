@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <title>Mi sitio</title>
+    </head>
+  <body>
+    <%- include('header')%>
+    <h1>Editar película</h1>
+    <form action="/peliculas/editar/<%= pelicula.id%>" method="POST">
+        <div>
+            <label for="">Titulo</label>
+            <input type="text" name="title" value="<%= pelicula.title%>">
+        </div>
+        <div>
+            <label for="">Premios</label>
+            <input type="text" name="awards" value="<%= pelicula.awards%>">
+        </div>
+        <div>
+            <label for="">Duración</label>
+            <input type="text" name="length" value="<%= pelicula.length%>">
+        </div>
+        <div>
+            <label for="">Rating</label>
+            <input type="text" name="rating" value="<%= pelicula.rating%>">
+        </div>
+        <div>
+            <label for="">Fecha de estreno</label>
+            <input type="date" name="release_date">
+        </div>
+        <div>
+            <label for="">Genero</label>
+            <select name="genre">
+                
+                <% for(let i = 0; i < generos.length; i++) {%>
+                    <% if(generos[i].id == pelicula.genre_id) {%>
+                    <option value="<%= generos[i].id %>" selected>
+                        <%= generos[i].name %>
+                    </option>
+                    <% } else {%>
+                        <option value="<%= generos[i].id %>">
+                            <%= generos[i].name %>
+                        </option>
+                    <% } %>
+                <% } %>
+            </select>
+        </div>
+        <button type="submit">Actualizar</button>
+    </form>
+    <%- include('footer')%>
+  </body>
+</html>
